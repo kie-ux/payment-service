@@ -46,12 +46,12 @@ def process_payment():
             ET.SubElement(response, 'Status').text  = 'Failed'
             ET.SubElement(response, 'Message').text = 'Invalid amount'
 
-        return Response(ET.tostring(response, encoding='utf-8'), mimetype='application/xml')
+        return Response(ET.tostring(response, encoding='unicode'), mimetype='application/xml')
     except Exception as e:
         response = ET.Element('PaymentResponse')
         ET.SubElement(response, 'Status').text  = 'Error'
         ET.SubElement(response, 'Message').text = str(e)
-        return Response(ET.tostring(response, encoding='utf-8'), mimetype='application/xml')
+        return Response(ET.tostring(response, encoding='unicode'), mimetype='application/xml')
 
 if __name__ == '__main__':
     port = int(os.environ.get('PORT', 5002))
